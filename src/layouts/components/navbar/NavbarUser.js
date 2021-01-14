@@ -15,7 +15,7 @@ import * as Icon from "react-feather"
 import classnames from "classnames"
 import Autocomplete from "../../../components/@vuexy/autoComplete/AutoCompleteComponent"
 import { history } from "../../../history"
-
+import { Link } from "react-router-dom"
 
 const UserDropdown = props => {
   return (
@@ -56,7 +56,8 @@ const UserDropdown = props => {
 class NavbarUser extends React.PureComponent {
   state = {
     navbarSearch: false,
-    suggestions: []
+    suggestions: [],
+    selectedCountry:{ code:'en' , title:'English'},
   }
 
   componentDidMount() {
@@ -71,10 +72,49 @@ class NavbarUser extends React.PureComponent {
     })
   }
 
+  onCountryChange = (value) => {
+    
+    console.log('value changed')
+    this.setState({
+      selectedCountry:value
+    })
+
+  }
+
+  maximizeScreen = () => {
+    window.moveTo(0, 0);
+		window.resizeTo(window.screen.width, window.screen.height)
+  }
+
 
   render() {
     return (
       <ul className="nav navbar-nav navbar-nav-user float-right">
+
+        <UncontrolledDropdown
+          tag="li"
+          className=" nav-item">
+          <DropdownToggle tag="a" style={{marginTop:'8px'}} className="nav-link h-100">
+            <span >
+            {this.state.selectedCountry.title}
+            </span>
+          </DropdownToggle>
+
+          <DropdownMenu>
+            <DropdownItem onClick={() => this.onCountryChange({code:'en' , title:'English'}) }>English</DropdownItem>
+            <DropdownItem onClick={() => this.onCountryChange({code:'no' , title:'Norwegian'}) }>Norwegian</DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+
+
+        <NavItem>
+          <NavLink>
+            <Icon.Maximize onClick={this.maximizeScreen} size={21}  />
+          </NavLink>
+        </NavItem>
+        
+
+      
 
         <NavItem className="nav-search" onClick={this.handleNavbarSearch}>
           <NavLink className="nav-link-search">
@@ -202,6 +242,7 @@ class NavbarUser extends React.PureComponent {
             </div>
           </div>
         </NavItem>
+
         <UncontrolledDropdown
           tag="li"
           className="dropdown-notification nav-item"

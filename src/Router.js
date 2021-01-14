@@ -10,13 +10,29 @@ const Home = lazy(() =>
   import("./views/pages/Home")
 )
 
-const Page2 = lazy(() =>
-  import("./views/pages/Page2")
-)
-
 const login = lazy(() =>
   import("./views/pages/authentication/login/Login")
 )
+
+//importing school pages
+const SchoolInformation = lazy(() =>
+  import("./views/pages/school/SchoolInformation")
+)
+
+const SchoolList = lazy(() =>
+  import("./views/pages/school/SchoolList")
+)
+
+const SchoolDetails = lazy(() =>
+  import("./views/pages/school/SchoolDetails")
+)
+
+//importing student pages
+
+const StudentAccount = lazy(() =>
+  import("./views/pages/student/StudentAccount")
+)
+
 
 // Set Layout and Component Using App Route
 const RouteConfig = ({
@@ -70,10 +86,35 @@ class AppRouter extends React.Component {
             path="/"
             component={Home}
           />
-          <AppRoute
-            path="/page2"
-            component={Page2}
+
+          <AppRoute 
+
+          path="/SchoolInformation"
+          component={SchoolInformation}
+          
           />
+
+          <AppRoute 
+
+          path="/SchoolList"
+          component={SchoolList}
+
+          />
+
+          <AppRoute 
+
+          path="/SchoolDetails"
+          component={SchoolDetails}
+
+          />
+
+          <AppRoute 
+
+          path="/StudentAccount"
+          component={StudentAccount}
+
+          />
+                  
           <AppRoute
             path="/pages/login"
             component={login}

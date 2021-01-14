@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import { NavLink } from "react-router-dom"
 import { Disc, X, Circle } from "react-feather"
 import classnames from "classnames"
+import Logo from '../../../../myAssets/images/online_go_logo.png'
+
+
 class SidebarHeader extends Component {
   render() {
     let {
@@ -17,8 +20,7 @@ class SidebarHeader extends Component {
         <ul className="nav navbar-nav flex-row">
           <li className="nav-item mr-auto">
             <NavLink to="/" className="navbar-brand">
-              <div className="brand-logo" />
-              <h2 className="brand-text mb-0">Vuexy</h2>
+            <img src={Logo} className="w-100" style={{maxWidth:'190px'}} />
             </NavLink>
           </li>
           <li className="nav-item nav-toggle">

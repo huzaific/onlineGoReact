@@ -16,7 +16,9 @@ ReactDOM.render(
     <Provider store={store}>
       <Suspense fallback={<Spinner />}>
         <Layout>
+        <div className="mt-0 mt-xl-5">
             <LazyApp />
+            </div>
         </Layout>
       </Suspense>
     </Provider>,

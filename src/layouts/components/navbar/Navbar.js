@@ -1,14 +1,19 @@
-import React from "react"
-import { Navbar } from "reactstrap"
+import React, { useEffect } from "react"
+import { Navbar, NavItem } from "reactstrap"
 import classnames from "classnames"
-import NavbarBookmarks from "./NavbarBookmarks"
 import NavbarUser from "./NavbarUser"
+import * as Icon from "react-feather"
 import userImg from "../../../assets/img/portrait/small/avatar-s-11.jpg"
+import { NavLink } from "react-router-dom"
+import Logo from '../../../myAssets/images/online_go_logo.png'
 
 
 const ThemeNavbar = props => {
   const colorsArr = [ "primary", "danger", "success", "info", "warning", "dark"]
   const navbarTypes = ["floating" , "static" , "sticky" , "hidden"]
+
+
+
   return (
     <React.Fragment>
       <div className="content-overlay" />
@@ -48,18 +53,62 @@ const ThemeNavbar = props => {
               className="navbar-collapse d-flex justify-content-between align-items-center"
               id="navbar-mobile"
             >
-              <div className="bookmark-wrapper">
-                <NavbarBookmarks
-                  sidebarVisibility={props.sidebarVisibility}
-                  handleAppOverlay={props.handleAppOverlay}
-                />
+              <div>
+          
+        <ul className="navbar-nav d-xl-none">
+          <NavItem className="mobile-menu mr-auto">
+            <NavLink to="#"
+              className="nav-menu-main menu-toggle hidden-xs is-active"
+              onClick={props.sidebarVisibility}>
+              <Icon.Menu className="ficon" />
+            </NavLink>
+          </NavItem>
+        </ul>
+
+        <ul className="nav navbar-nav d-none d-xl-flex">
+         <NavItem >
+            <NavLink 
+            className="nav-link "
+             to="/ghj" >
+              <Icon.CheckSquare className="ficon" />
+            </NavLink>
+          </NavItem>
+
+     
+
+          <NavItem>
+            <NavLink 
+             className="nav-link "
+              to="/ghj" >
+              <Icon.MessageSquare className="ficon" />
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink 
+             className="nav-link "
+              to="/gh" >
+              <Icon.User className="ficon" />
+            </NavLink>
+          </NavItem>
+
+          <NavItem>
+            <NavLink 
+             className="nav-link "
+               to="/dgh" >
+              <Icon.Calendar className="ficon" />
+            </NavLink>
+          </NavItem>
+        </ul>
+
               </div>
+             
               {props.horizontal ? (
                 <div className="logo d-flex align-items-center">
-                  <div className="brand-logo mr-50"></div>
-                  <h2 className="text-primary brand-text mb-0">Vuexy</h2>
+                  <img src={Logo} className="w-100" style={{maxWidth:'190px'}} />
                 </div>
               ) : null}
+
               <NavbarUser
                 handleAppOverlay={props.handleAppOverlay}
                 changeCurrentLang={props.changeCurrentLang}
